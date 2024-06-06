@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "+vWC5cFxGmhFPdPLo/neU0GC59fTwJyj8t3iFb9iqCSDV6xYF6vkCov3Lm9aW3V9KjHe0jEFM0fCKk2wq+FOCQ==",
+  "success": true,
+  "projectFilePath": "/home/joy/Desktop/BetLembosa Wep App/BetLembosa-Share-Rooms-BackEnd/BetLembosa-Share-Rooms-BackEnd.csproj",
+  "expectedPackageFiles": [
+    "/home/joy/.nuget/packages/microsoft.aspnetcore.openapi/8.0.2/microsoft.aspnetcore.openapi.8.0.2.nupkg.sha512",
+    "/home/joy/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/joy/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/joy/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/home/joy/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/home/joy/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/home/joy/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,6 @@
+@BetLembosa_Share_Rooms_BackEnd_HostAddress = http://localhost:5041
+
+GET {{BetLembosa_Share_Rooms_BackEnd_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

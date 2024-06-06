@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/BetLembosa-Share-Rooms-BackEnd.props" />
+</Project>

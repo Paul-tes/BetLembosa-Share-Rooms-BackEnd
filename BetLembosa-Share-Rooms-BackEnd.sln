@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetLembosa-Share-Rooms-BackEnd", "BetLembosa-Share-Rooms-BackEnd.csproj", "{49782387-3E0E-4271-9E01-547A9F226649}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{49782387-3E0E-4271-9E01-547A9F226649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49782387-3E0E-4271-9E01-547A9F226649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49782387-3E0E-4271-9E01-547A9F226649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49782387-3E0E-4271-9E01-547A9F226649}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0081036-1F42-464A-A8A3-82CCA149C132}
+	EndGlobalSection
+EndGlobal
