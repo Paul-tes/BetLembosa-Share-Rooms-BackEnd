@@ -14,7 +14,7 @@ public class TokenService : ITokenService
     _config = config;
     _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:SigninKey"]));
   }
-  public string CreateToken(IdentityUser user)
+  public string CreateToken(AppUser user)
   {
     var claims = new List<Claim>{
       new Claim(JwtRegisteredClaimNames.Email, user.Email),

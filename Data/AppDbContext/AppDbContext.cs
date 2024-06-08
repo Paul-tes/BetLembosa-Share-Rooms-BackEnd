@@ -9,6 +9,10 @@ public class AppDbContext : IdentityDbContext
   public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
 
   // all models sets here
+  public DbSet<HomeDto> Homes { get; set; }
+  public DbSet<WishlistDto> Wishlists { get; set; }
+  public DbSet<TripDto> Trips { get; set; }
+
   protected override void OnModelCreating(ModelBuilder builder) {
     base.OnModelCreating(builder);
     List<IdentityRole> roles = new List<IdentityRole>{
