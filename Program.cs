@@ -41,6 +41,15 @@ builder.Services.AddAuthentication(options => {
 // Add Authorization
 builder.Services.AddAuthorization();
 
+// Add CORS services
+builder.Services.AddCors(options => {
+    options.AddDefaultPolicy(builder => {
+        builder.WithOrigins("http://localhost:3000") // Add your frontend URL here
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
 // Add services to the container
 builder.Services.AddControllers();
 
@@ -68,6 +77,10 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+
+// Use CORS before authentication and authorization
+app.UseCors();
 
 app.UseRouting();
 

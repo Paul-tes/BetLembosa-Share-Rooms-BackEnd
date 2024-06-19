@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BetLembosa_Share_Rooms_BackEnd;
 
-public class AppDbContext : IdentityDbContext
+public class AppDbContext : IdentityDbContext<AppUser>
 {
   public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
 
@@ -12,6 +12,7 @@ public class AppDbContext : IdentityDbContext
   public DbSet<HomeDto> Homes { get; set; }
   public DbSet<WishlistDto> Wishlists { get; set; }
   public DbSet<TripDto> Trips { get; set; }
+  public DbSet<CommentDto> Comment { get; set; }
 
   protected override void OnModelCreating(ModelBuilder builder) {
     base.OnModelCreating(builder);

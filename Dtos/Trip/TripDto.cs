@@ -13,9 +13,9 @@ namespace BetLembosa_Share_Rooms_BackEnd
         [Required]
         public DateTime UpdatedAt { get; set; }
         // Navigation properties
-        public AppUser User { get; set; }
+        public string UserId { get; set; }
         
-        public HomeDto Home { get; set; }
+        public ICollection<HomeDto> Homes { get; set; }
 
         // Additional trip information
         public string TripInfo { get; set; }
