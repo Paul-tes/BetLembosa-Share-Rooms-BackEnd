@@ -30,14 +30,14 @@ public class HomeController : ControllerBase
   [HttpGet("getHome")]
   public async Task<ActionResult<HomeDto>> getHome(Guid id)
   {
-    var homeDto = await _context.Homes.Include(h => h.CreatedBy).FirstOrDefaultAsync(h => h.Id == id);
+    var home = await _context.Homes.FindAsync(id);
 
-    if (homeDto == null)
+    if (home == null)
     {
       return NotFound();
     }
 
-    return homeDto;
+    return home;
   }
 
   // PUT: api/home/5
