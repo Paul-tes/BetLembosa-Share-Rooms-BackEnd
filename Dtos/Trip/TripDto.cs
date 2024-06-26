@@ -9,13 +9,12 @@ namespace BetLembosa_Share_Rooms_BackEnd
         public required DateTime CreatedAt { get; set; }
         public required DateTime UpdatedAt { get; set; }
         // Navigation properties
-        [Required]
         public required string UserId { get; set; }
         
-        public required string HomesIs { get; set; }
+        public required string HomeId { get; set; }
 
-        // Additional trip information
-        public required string TripInfo { get; set; }
-        public required string PayementInfo { get; set; }
+        public required string StartDate { get; set; }    
+        public required string EndDate { get; set; }
+        public required bool Paid { get; set; }
     }
 }

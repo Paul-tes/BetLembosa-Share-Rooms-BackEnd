@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BetLembosa_Share_Rooms_BackEnd;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BetLembosa_Share_Rooms_BackEnd.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240626130140_UpdateTripDatos")]
+    partial class UpdateTripDatos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -204,9 +207,8 @@ namespace BetLembosa_Share_Rooms_BackEnd.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("EndDate")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("HomeId")
                         .IsRequired()
@@ -215,9 +217,8 @@ namespace BetLembosa_Share_Rooms_BackEnd.Migrations
                     b.Property<bool>("Paid")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("StartDate")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -287,13 +288,13 @@ namespace BetLembosa_Share_Rooms_BackEnd.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "471bb3a5-4413-4478-b669-5cbdcd8f499c",
+                            Id = "ea4cd3f9-de1f-4cde-9cf5-3d1aecd3e738",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "63c51e44-0ac2-4e3f-a7f0-60ed6ffe9b85",
+                            Id = "511e6af7-c351-4b81-8c99-9158122017bc",
                             Name = "User",
                             NormalizedName = "USER"
                         });

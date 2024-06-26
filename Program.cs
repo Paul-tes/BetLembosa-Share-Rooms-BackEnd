@@ -3,9 +3,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Stripe;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// add Stripe configuration
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 
 // Database connection
 builder.Services.AddDbContext<AppDbContext>(options => {
@@ -44,7 +49,7 @@ builder.Services.AddAuthorization();
 // Add CORS services
 builder.Services.AddCors(options => {
     options.AddDefaultPolicy(builder => {
-        builder.WithOrigins("http://localhost:3000") // Add your frontend URL here
+        builder.WithOrigins("https://localhost:3000") // Add your frontend URL here
                .AllowAnyHeader()
                .AllowAnyMethod();
     });
@@ -58,7 +63,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // dependency injection for token service
-builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<ITokenService, BetLembosa_Share_Rooms_BackEnd.TokenService>();
 
 var app = builder.Build();
 
