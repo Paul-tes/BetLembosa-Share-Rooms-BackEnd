@@ -3,4 +3,5 @@
 public class CheckoutOrderResponse
 {
   public string? SessionId { get; set; }
+  public Guid? TripId { get; set;}
 }

@@ -13,6 +13,9 @@ namespace BetLembosa_Share_Rooms_BackEnd
         
         public required string HomeId { get; set; }
 
+        public required string Photo {  get; set; }
+        public required string HostName { get; set; }
+
         public required string StartDate { get; set; }    
         public required string EndDate { get; set; }
         public required bool Paid { get; set; }

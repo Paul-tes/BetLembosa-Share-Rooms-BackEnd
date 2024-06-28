@@ -3,10 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Stripe.Checkout;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BetLembosa_Share_Rooms_BackEnd;
 
@@ -35,58 +31,65 @@ public class TripController : ControllerBase
 
     [Authorize]
     [HttpPost("create-checkout-session")]
-    public async Task<string> CreateCheckoutSession([FromBody] CheckoutDto data) {
-        var options = new Stripe.Checkout.SessionCreateOptions {
-            SuccessUrl = data.SuccessUrl,
-            CancelUrl = data.CancelUrl,
-            PaymentMethodTypes = new List<string> {
-                "card"
-            },
-            LineItems = new List<SessionLineItemOptions> {
-                new() {
-                    PriceData = new SessionLineItemPriceDataOptions {
-                        UnitAmount = (long)data.Price * 100,
-                        Currency = "USD",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions {
-                            Name = data.HostName,
-                            Description = $"{data.StartDate} Upto {data.EndDate}",
-                            Images = new List<string> { data.HostPhoto }
-                        },
+    public async Task<ActionResult<CheckoutOrderResponse>> CreateCheckoutSession([FromBody] CheckoutDto data) {
+      var options = new Stripe.Checkout.SessionCreateOptions {
+        SuccessUrl = data.SuccessUrl,
+        CancelUrl = data.CancelUrl,
+        PaymentMethodTypes = new List<string> {
+            "card"
+        },
+        LineItems = new List<SessionLineItemOptions> {
+            new() {
+                PriceData = new SessionLineItemPriceDataOptions {
+                    UnitAmount = (long)data.Price * 100,
+                    Currency = "USD",
+                    ProductData = new SessionLineItemPriceDataProductDataOptions {
+                        Name = data.HostName,
+                        Description = $"{data.StartDate} Upto {data.EndDate}",
+                        Images = new List<string> { data.HostPhoto }
                     },
-                    Quantity = 1,
                 },
+                Quantity = 1,
             },
-            Mode = "payment"
-        };
+        },
+        Mode = "payment"
+      };
 
-        var service = new Stripe.Checkout.SessionService();
-        var session = await service.CreateAsync(options);
+      var service = new Stripe.Checkout.SessionService();
+      var session = await service.CreateAsync(options);
 
-        // Create a trip after session is created
-        await CreateTrip(data);
+      // Create a trip after session is created
+      var TripId = await CreateTrip(data);
 
-        return session.Id;
+      var response = new CheckoutOrderResponse {
+        SessionId = session.Id,
+        TripId = TripId,
+      };
+
+      return Ok(response);
     }
 
     [Authorize]
     [HttpPost("create")]
-    private async Task<IActionResult> CreateTrip(CheckoutDto tripDto) {
-        var user = await GetUserFromToken();
-        var trip = new TripDto {
-            Id = Guid.NewGuid(),
-            CreatedAt = DateTime.UtcNow,
-            UpdatedAt = DateTime.UtcNow,
-            UserId = user.Id,
-            HomeId = tripDto.HostId,
-            StartDate = tripDto.StartDate,
-            EndDate = tripDto.EndDate,
-            Paid = true
-        };
+    private async Task<Guid> CreateTrip(CheckoutDto data) {
+      var user = await GetUserFromToken();
+      var trip = new TripDto {
+        Id = Guid.NewGuid(),
+        CreatedAt = DateTime.UtcNow,
+        UpdatedAt = DateTime.UtcNow,
+        UserId = user.Id,
+        HomeId = data.HostId,
+        StartDate = data.StartDate,
+        EndDate = data.EndDate,
+        HostName = data.HostName,
+        Photo = data.HostPhoto,
+        Paid = false,
+      };
 
-        _context.Trips.Add(trip);
-        await _context.SaveChangesAsync();
+      _context.Trips.Add(trip);
+      await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetTrip), new { id = trip.Id }, trip);
+      return trip.Id;
     }
 
     [Authorize]
