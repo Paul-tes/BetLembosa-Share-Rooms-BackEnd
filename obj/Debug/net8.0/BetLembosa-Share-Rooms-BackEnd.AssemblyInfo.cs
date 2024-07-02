@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BetLembosa-Share-Rooms-BackEnd")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8d385638b6fd29f1bc9812218b646b146649118")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2636468ec02511661ce0cdd14313ac2df5f6c965")]
 [assembly: System.Reflection.AssemblyProductAttribute("BetLembosa-Share-Rooms-BackEnd")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BetLembosa-Share-Rooms-BackEnd")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

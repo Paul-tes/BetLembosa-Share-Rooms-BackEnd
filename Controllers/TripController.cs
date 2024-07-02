@@ -120,15 +120,15 @@ public class TripController : ControllerBase
     }
 
     [Authorize]
-    [HttpPut("updatePayment/{id}")]
-    public async Task<IActionResult> UpdatePayment(Guid id, [FromBody] bool paid) {
-        var trip = await _context.Trips.FindAsync(id);
+    [HttpPut("updatePayment")]
+    public async Task<IActionResult> UpdatePayment([FromBody] UpdatePayDto data) {
+        var trip = await _context.Trips.FindAsync(data.Id);
 
         if (trip == null) {
             return NotFound();
         }
 
-        trip.Paid = paid;
+        trip.Paid = data.Paid;
         trip.UpdatedAt = DateTime.UtcNow;
 
         _context.Entry(trip).State = EntityState.Modified;
