@@ -63,7 +63,7 @@ public class AccountController : ControllerBase
       return StatusCode(500, ex.ToString());
     }
   }
-
+  
   [HttpPost("check-user")]
   public async Task<IActionResult> CheckUser([FromBody] CheckUserDto checkUserDto) {
     var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == checkUserDto.Email.ToLower());

@@ -66,13 +66,16 @@ public class WishListController : Controller
   [HttpPost("create")]
   public async Task<ActionResult<WishlistDto>> CreateWishlist([FromBody] CreateWishList createWishlistRequest)
   {
+    // get user email from the claim
     var email = User.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
 
+    // check the email availability
     if (email == null) return Unauthorized("Can't find email address in token");
 
+    // find user by the email
     var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == email);
     if (user == null) return Unauthorized("User not found");
-
+    // error handle
     var home = await _context.Homes.FirstOrDefaultAsync(h => h.Id == createWishlistRequest.HomeId);
     if (home == null) return NotFound("Home not found");
 
@@ -85,8 +88,8 @@ public class WishListController : Controller
       Homes = new List<HomeDto> { home }
     };
 
-    _context.Wishlists.Add(wishlist);
-    await _context.SaveChangesAsync();
+    _context.Wishlists.Add(wishlist); // add wish list
+    await _context.SaveChangesAsync(); // dave in database
 
     return Ok();
   }
@@ -96,6 +99,7 @@ public class WishListController : Controller
   [HttpDelete("delete/{homeId}")]
   public async Task<IActionResult> DeleteWishlist(Guid homeId)
   {
+        // get user email from the claim
     var email = User.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")?.Value;
 
     if (email == null) return Unauthorized("Can't find email address in token");

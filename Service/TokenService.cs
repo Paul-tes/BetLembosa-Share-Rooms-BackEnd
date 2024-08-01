@@ -21,7 +21,6 @@ public class TokenService : ITokenService
     };
 
     var creads = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
-
     var tokenDiscriptor = new SecurityTokenDescriptor{
       Subject = new ClaimsIdentity(claims),
       Expires = DateTime.Now.AddDays(7),
